@@ -1,7 +1,6 @@
-diff -ur gdbm-1.7.3.old/Makefile.in gdbm-1.7.3/Makefile.in
---- gdbm-1.7.3.old/Makefile.in	Thu May 20 03:12:50 1999
-+++ gdbm-1.7.3/Makefile.in	Thu May 20 03:18:11 1999
-@@ -42,6 +42,8 @@
+--- gdbm-1.8.0/Makefile.in.orig	Wed May 19 05:16:06 1999
++++ gdbm-1.8.0/Makefile.in	Thu May 20 10:30:07 1999
+@@ -45,6 +45,8 @@
  man3dir = $(prefix)/man/man3
  manext = 3
  
@@ -9,27 +8,37 @@ diff -ur gdbm-1.7.3.old/Makefile.in gdbm-1.7.3/Makefile.in
 +
  #### End of system configuration section. ####
  
- .c.o:
-@@ -98,15 +100,15 @@
+ .SUFFIXES:
+@@ -120,20 +122,21 @@
  progs: $(PROGS)
  
- install: libgdbm.a libgdbm.so.$(VERSION) gdbm.h gdbm.info
--	$(INSTALL_DATA) libgdbm.a $(libdir)/libgdbm.a
--	$(INSTALL_DATA) libgdbm.so.$(VERSION) $(libdir)/libgdbm.so.$(VERSION)
--	$(INSTALL_DATA) gdbm.h $(includedir)/gdbm.h
--	$(INSTALL_DATA) $(srcdir)/gdbm.3 $(man3dir)/gdbm.3
--	$(INSTALL_DATA) $(srcdir)/gdbm.info $(infodir)/gdbm.info
-+	$(INSTALL_DATA) libgdbm.a $(DESTDIR)$(libdir)/libgdbm.a
-+	$(INSTALL_DATA) libgdbm.so.$(VERSION) $(DESTDIR)$(libdir)/libgdbm.so.$(VERSION)
+ install: libgdbm.la gdbm.h gdbm.info
+-	$(srcdir)/mkinstalldirs $(libdir) $(includedir) $(man3dir) $(infodir)
+-	$(LIBTOOL) install -c libgdbm.la $(libdir)/libgdbm.la
+-	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) gdbm.h $(includedir)/gdbm.h
+-	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/gdbm.3 \
+-		$(man3dir)/gdbm.3
+-	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/gdbm.info \
+-		$(infodir)/gdbm.info
++	$(srcdir)/mkinstalldirs $(DESTDIR)$(libdir) $(DESTDIR)$(includedir) \
++		$(DESTDIR)$(man3dir) $(DESTDIR)$(infodir)
++	$(LIBTOOL) install -c libgdbm.la $(DESTDIR)$(libdir)/libgdbm.la
 +	$(INSTALL_DATA) gdbm.h $(DESTDIR)$(includedir)/gdbm.h
-+	$(INSTALL_DATA) $(srcdir)/gdbm.3 $(DESTDIR)$(man3dir)/gdbm.3
-+	$(INSTALL_DATA) $(srcdir)/gdbm.info $(DESTDIR)$(infodir)/gdbm.info
++	$(INSTALL_DATA) $(srcdir)/gdbm.3 \
++		$(DESTDIR)$(man3dir)/gdbm.3
++	$(INSTALL_DATA) $(srcdir)/gdbm.info \
++		$(DESTDIR)$(infodir)/gdbm.info
  
  install-compat:
--	$(INSTALL_DATA) $(srcdir)/dbm.h $(includedir)/dbm.h
--	$(INSTALL_DATA) $(srcdir)/ndbm.h $(includedir)/ndbm.h
-+	$(INSTALL_DATA) $(srcdir)/dbm.h $(DESTDIR)$(includedir)/dbm.h
-+	$(INSTALL_DATA) $(srcdir)/ndbm.h $(DESTDIR)$(includedir)/ndbm.h
+ 	$(srcdir)/mkinstalldirs $(includedir)
+-	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/dbm.h \
+-		$(includedir)/dbm.h
+-	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/ndbm.h \
+-		$(includedir)/ndbm.h
++	$(INSTALL_DATA) $(srcdir)/dbm.h \
++		$(DESTDIR)$(includedir)/dbm.h
++	$(INSTALL_DATA) $(srcdir)/ndbm.h \
++		$(DESTDIR)$(includedir)/ndbm.h
  
- libgdbm.a: $(OBJS) gdbm.h
- 	rm -f libgdbm.a
+ #libgdbm.a: $(OBJS) gdbm.h
+ #	rm -f libgdbm.a
