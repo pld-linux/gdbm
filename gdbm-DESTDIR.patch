@@ -1,0 +1,35 @@
+diff -ur gdbm-1.7.3.old/Makefile.in gdbm-1.7.3/Makefile.in
+--- gdbm-1.7.3.old/Makefile.in	Thu May 20 03:12:50 1999
++++ gdbm-1.7.3/Makefile.in	Thu May 20 03:18:11 1999
+@@ -42,6 +42,8 @@
+ man3dir = $(prefix)/man/man3
+ manext = 3
+ 
++DESTDIR =
++
+ #### End of system configuration section. ####
+ 
+ .c.o:
+@@ -98,15 +100,15 @@
+ progs: $(PROGS)
+ 
+ install: libgdbm.a libgdbm.so.$(VERSION) gdbm.h gdbm.info
+-	$(INSTALL_DATA) libgdbm.a $(libdir)/libgdbm.a
+-	$(INSTALL_DATA) libgdbm.so.$(VERSION) $(libdir)/libgdbm.so.$(VERSION)
+-	$(INSTALL_DATA) gdbm.h $(includedir)/gdbm.h
+-	$(INSTALL_DATA) $(srcdir)/gdbm.3 $(man3dir)/gdbm.3
+-	$(INSTALL_DATA) $(srcdir)/gdbm.info $(infodir)/gdbm.info
++	$(INSTALL_DATA) libgdbm.a $(DESTDIR)$(libdir)/libgdbm.a
++	$(INSTALL_DATA) libgdbm.so.$(VERSION) $(DESTDIR)$(libdir)/libgdbm.so.$(VERSION)
++	$(INSTALL_DATA) gdbm.h $(DESTDIR)$(includedir)/gdbm.h
++	$(INSTALL_DATA) $(srcdir)/gdbm.3 $(DESTDIR)$(man3dir)/gdbm.3
++	$(INSTALL_DATA) $(srcdir)/gdbm.info $(DESTDIR)$(infodir)/gdbm.info
+ 
+ install-compat:
+-	$(INSTALL_DATA) $(srcdir)/dbm.h $(includedir)/dbm.h
+-	$(INSTALL_DATA) $(srcdir)/ndbm.h $(includedir)/ndbm.h
++	$(INSTALL_DATA) $(srcdir)/dbm.h $(DESTDIR)$(includedir)/dbm.h
++	$(INSTALL_DATA) $(srcdir)/ndbm.h $(DESTDIR)$(includedir)/ndbm.h
+ 
+ libgdbm.a: $(OBJS) gdbm.h
+ 	rm -f libgdbm.a
