@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	gdbmexport	# gdbmexport compatibility tool
+#
 Summary:	GNU database library for C
 Summary(de.UTF-8):	GNU-Datenbank-Library für C
 Summary(fr.UTF-8):	La librairie GNU de bases de données pout le langage C
@@ -5,19 +9,17 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.8.3
-Release:	8
-License:	GPL
+Version:	1.9.1
+Release:	1
+License:	GPL v3+
 Group:		Libraries
-Source0:	ftp://ftp.gnu.org/pub/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	1d1b1d5c0245b1c00aff92da751e9aa1
+Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
+# Source0-md5:	59f6e4c4193cb875964ffbe8aa384b58
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-jbj.patch
-Patch2:		%{name}-linking.patch
-Patch3:		%{name}-link-compat.patch
-Patch4:		%{name}-make-jN.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
+Patch1:		%{name}-link-compat.patch
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
+%{?with_gdbmexport:BuildRequires:	gdbm18-devel >= 1.8.3}
 BuildRequires:	libtool
 BuildRequires:	texinfo
 Obsoletes:	libgdbm2
@@ -128,29 +130,47 @@ Biblioteka statyczna gdbm.
 %description static -l uk.UTF-8
 Це статична бібліотека gdbm, бази даних GNU.
 
+%package export
+Summary:	gdbmexport utility to export old GDBM 1.8.x databases
+Summary(pl.UTF-8):	Narzędzie gdbmexport pozwalające wyeksportować stare bazy GDBM 1.8.x
+Group:		Applications/File
+Requires:	gdbm18 >= 1.8.3
+
+%description export
+gdbmexport utility to export old GDBM 1.8.x databases in order to load
+them in new GDBM format.
+
+%description export -l pl.UTF-8
+Narzędzie gdbmexport pozwalające wyeksportować stare bazy GDBM 1.8.x w
+celu wczytania do nowego formatu GDBM.
+
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
-%configure
+%{__automake}
+%configure \
+	--enable-libgdbm-compat \
+	--disable-silent-rules \
+%if %{with gdbmexport}
+	--enable-gdbm-export \
+	--with-gdbm183-includedir=%{_includedir}/gdbm-1.8 \
+	--with-gdbm183-library="-lgdbm-1.8"
+%endif
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -j1 install install-compat \
-	INSTALL_ROOT=$RPM_BUILD_ROOT \
-	BINOWN=`id -u` BINGRP=`id -g`
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -158,25 +178,40 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post devel	-p	/sbin/postshell
+%post	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel	-p	/sbin/postshell
+%postun	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%doc AUTHORS ChangeLog NEWS NOTE-WARNING README
+%attr(755,root,root) %{_bindir}/testgdbm
+%attr(755,root,root) %{_libdir}/libgdbm.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgdbm.so.4
+%attr(755,root,root) %{_libdir}/libgdbm_compat.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgdbm_compat.so.4
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_mandir}/man3/*
-%{_includedir}/*
-%{_infodir}/gdbm*
+%attr(755,root,root) %{_libdir}/libgdbm.so
+%attr(755,root,root) %{_libdir}/libgdbm_compat.so
+%{_libdir}/libgdbm.la
+%{_libdir}/libgdbm_compat.la
+%{_includedir}/dbm.h
+%{_includedir}/gdbm.h
+%{_includedir}/ndbm.h
+%{_mandir}/man3/gdbm.3*
+%{_infodir}/gdbm.info*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libgdbm.a
+%{_libdir}/libgdbm_compat.a
+
+%if %{with gdbmexport}
+%files export
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gdbmexport
+%endif
