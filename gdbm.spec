@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.9.1
+Version:	1.10
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	59f6e4c4193cb875964ffbe8aa384b58
+# Source0-md5:	88770493c2559dc80b561293e39d3570
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 BuildRequires:	autoconf >= 2.63
@@ -172,6 +172,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -184,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS NOTE-WARNING README
 %attr(755,root,root) %{_bindir}/testgdbm
