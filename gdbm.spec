@@ -20,6 +20,7 @@ Patch1:		%{name}-link-compat.patch
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 %{?with_gdbmexport:BuildRequires:	gdbm18-devel >= 1.8.3}
+BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	texinfo
 Obsoletes:	libgdbm2
