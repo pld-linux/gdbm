@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.10
-Release:	3
+Version:	1.11
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	88770493c2559dc80b561293e39d3570
+# Source0-md5:	72c832680cf0999caedbe5b265c8c1bd
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 BuildRequires:	autoconf >= 2.63
@@ -190,11 +190,16 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS NOTE-WARNING README
-%attr(755,root,root) %{_bindir}/testgdbm
+%attr(755,root,root) %{_bindir}/gdbm_dump
+%attr(755,root,root) %{_bindir}/gdbm_load
+%attr(755,root,root) %{_bindir}/gdbmtool
 %attr(755,root,root) %{_libdir}/libgdbm.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgdbm.so.4
 %attr(755,root,root) %{_libdir}/libgdbm_compat.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgdbm_compat.so.4
+%{_mandir}/man1/gdbm_dump.1*
+%{_mandir}/man1/gdbm_load.1*
+%{_mandir}/man1/gdbmtool.1*
 
 %files devel
 %defattr(644,root,root,755)

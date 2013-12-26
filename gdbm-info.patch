@@ -1,14 +1,18 @@
---- gdbm-1.9.1/doc/gdbm.texinfo.orig	2011-08-11 14:07:32.000000000 +0200
-+++ gdbm-1.9.1/doc/gdbm.texinfo	2011-08-14 09:30:31.906384656 +0200
-@@ -6,9 +6,9 @@
- @settitle gdbm manual
+--- gdbm-1.11/doc/gdbm.texinfo.orig	2013-12-26 18:51:05.253855816 +0100
++++ gdbm-1.11/doc/gdbm.texinfo	2013-12-26 18:51:46.497187418 +0100
+@@ -6,11 +6,11 @@
+ @settitle GDBM manual
  
  @ifinfo
 -@dircategory Programming & development tools
 +@dircategory Libraries:
  @direntry
 -* GDBM: (gdbm).                 The GNU database manager.
+-* gdbm_dump: gdbm_dump(gdbm).   Dump the GDBM database into a flat file.
+-* gdbm_load: gdbm_load(gdbm).   Load the database from a flat file.
 +* GDBM: (gdbm).				The GNU database manager
++* gdbm_dump: gdbm_dump(gdbm).		Dump the GDBM database into a flat file
++* gdbm_load: gdbm_load(gdbm).		Load the database from a flat file
  @end direntry
  @end ifinfo
  
