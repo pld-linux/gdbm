@@ -1,5 +1,5 @@
---- gdbm-1.12/doc/gdbm.texinfo.orig	2016-05-21 17:19:34.711227665 +0200
-+++ gdbm-1.12/doc/gdbm.texinfo	2016-05-21 17:20:33.357891871 +0200
+--- gdbm-1.13/doc/gdbm.texi.orig	2016-05-21 17:19:34.711227665 +0200
++++ gdbm-1.13/doc/gdbm.texi	2016-05-21 17:20:33.357891871 +0200
 @@ -6,11 +6,11 @@
  @settitle GDBM manual
  

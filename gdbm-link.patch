@@ -1,0 +1,11 @@
+--- gdbm-1.13/configure.ac.orig	2017-03-11 17:12:35.000000000 +0100
++++ gdbm-1.13/configure.ac	2017-04-10 21:43:11.431408546 +0200
+@@ -105,8 +105,6 @@
+ 
+ AC_CHECK_HEADERS([sys/file.h sys/termios.h string.h locale.h getopt.h])
+ 
+-AC_CHECK_LIB(dbm, main)
+-AC_CHECK_LIB(ndbm, main)
+ AC_CHECK_FUNCS([ftruncate flock lockf fsync setlocale getopt_long])
+ 
+ if test x$mapped_io = xyes

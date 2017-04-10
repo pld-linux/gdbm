@@ -9,19 +9,23 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.12
+Version:	1.13
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	9ce96ff4c99e74295ea19040931c8fb9
+# Source0-md5:	8929dcda2a8de3fd2367bdbf66769376
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
-BuildRequires:	autoconf >= 2.63
+Patch2:		%{name}-export.patch
+Patch3:		%{name}-link.patch
+URL:		http://www.gnu.org/software/gdbm/
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
 %{?with_gdbmexport:BuildRequires:	gdbm18-devel >= 1.8.3}
-BuildRequires:	gettext-tools
+BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	libtool
+BuildRequires:	readline-devel
 BuildRequires:	texinfo
 Obsoletes:	libgdbm2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -149,6 +153,8 @@ celu wczytania do nowego formatu GDBM.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
