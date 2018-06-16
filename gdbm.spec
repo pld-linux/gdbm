@@ -9,16 +9,15 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.13
+Version:	1.14.1
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	8929dcda2a8de3fd2367bdbf66769376
+# Source0-md5:	c2ddcb3897efa0f57484af2bd4f4f848
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
-Patch2:		%{name}-export.patch
-Patch3:		%{name}-link.patch
+Patch2:		%{name}-link.patch
 URL:		http://www.gnu.org/software/gdbm/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
@@ -154,7 +153,6 @@ celu wczytania do nowego formatu GDBM.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -200,7 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gdbm_load
 %attr(755,root,root) %{_bindir}/gdbmtool
 %attr(755,root,root) %{_libdir}/libgdbm.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgdbm.so.4
+%attr(755,root,root) %ghost %{_libdir}/libgdbm.so.5
 %attr(755,root,root) %{_libdir}/libgdbm_compat.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgdbm_compat.so.4
 %{_mandir}/man1/gdbm_dump.1*
