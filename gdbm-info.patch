@@ -1,6 +1,6 @@
---- gdbm-1.13/doc/gdbm.texi.orig	2016-05-21 17:19:34.711227665 +0200
-+++ gdbm-1.13/doc/gdbm.texi	2016-05-21 17:20:33.357891871 +0200
-@@ -6,11 +6,11 @@
+--- gdbm-1.15/doc/gdbm.texi.orig	2018-06-16 22:15:18.535568988 +0200
++++ gdbm-1.15/doc/gdbm.texi	2018-06-16 22:17:11.792234365 +0200
+@@ -6,12 +6,12 @@
  @settitle GDBM manual
  
  @ifinfo
@@ -10,9 +10,11 @@
 -* GDBM: (gdbm).                  The GNU database manager.
 -* gdbm_dump: (gdbm) gdbm_dump.   Dump the GDBM database into a flat file.
 -* gdbm_load: (gdbm) gdbm_load.   Load the database from a flat file.
+-* gdbmtool: (gdbm) gdbmtool.     Examine and modify a GDBM database.
 +* GDBM: (gdbm).				The GNU database manager
 +* gdbm_dump: (gdbm) gdbm_dump.		Dump the GDBM database into a flat file
 +* gdbm_load: (gdbm) gdbm_load.		Load the database from a flat file
++* gdbmtool: (gdbm) gdbmtool.		Examine and modify a GDBM database
  @end direntry
  @end ifinfo
  

@@ -1,7 +1,3 @@
-#
-# Conditional build:
-%bcond_without	gdbmexport	# gdbmexport compatibility tool
-#
 Summary:	GNU database library for C
 Summary(de.UTF-8):	GNU-Datenbank-Library für C
 Summary(fr.UTF-8):	La librairie GNU de bases de données pout le langage C
@@ -9,12 +5,12 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.14.1
+Version:	1.15
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	c2ddcb3897efa0f57484af2bd4f4f848
+# Source0-md5:	8d990067ae46c75d16e8a9c79b0c4fd7
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 Patch2:		%{name}-link.patch
@@ -134,20 +130,6 @@ Biblioteka statyczna gdbm.
 %description static -l uk.UTF-8
 Це статична бібліотека gdbm, бази даних GNU.
 
-%package export
-Summary:	gdbmexport utility to export old GDBM 1.8.x databases
-Summary(pl.UTF-8):	Narzędzie gdbmexport pozwalające wyeksportować stare bazy GDBM 1.8.x
-Group:		Applications/File
-Requires:	gdbm18 >= 1.8.3
-
-%description export
-gdbmexport utility to export old GDBM 1.8.x databases in order to load
-them in new GDBM format.
-
-%description export -l pl.UTF-8
-Narzędzie gdbmexport pozwalające wyeksportować stare bazy GDBM 1.8.x w
-celu wczytania do nowego formatu GDBM.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -162,12 +144,7 @@ celu wczytania do nowego formatu GDBM.
 %{__automake}
 %configure \
 	--enable-libgdbm-compat \
-	--disable-silent-rules \
-%if %{with gdbmexport}
-	--enable-gdbm-export \
-	--with-gdbm183-includedir=%{_includedir}/gdbm-1.8 \
-	--with-gdbm183-library="-lgdbm-1.8"
-%endif
+	--disable-silent-rules
 
 %{__make}
 
@@ -198,7 +175,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gdbm_load
 %attr(755,root,root) %{_bindir}/gdbmtool
 %attr(755,root,root) %{_libdir}/libgdbm.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgdbm.so.5
+%attr(755,root,root) %ghost %{_libdir}/libgdbm.so.6
 %attr(755,root,root) %{_libdir}/libgdbm_compat.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgdbm_compat.so.4
 %{_mandir}/man1/gdbm_dump.1*
@@ -221,9 +198,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libgdbm.a
 %{_libdir}/libgdbm_compat.a
-
-%if %{with gdbmexport}
-%files export
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/gdbmexport
-%endif
