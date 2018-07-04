@@ -1,3 +1,5 @@
+%bcond_without	tests
+
 Summary:	GNU database library for C
 Summary(de.UTF-8):	GNU-Datenbank-Library für C
 Summary(fr.UTF-8):	La librairie GNU de bases de données pout le langage C
@@ -5,12 +7,12 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.15
+Version:	1.16
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	8d990067ae46c75d16e8a9c79b0c4fd7
+# Source0-md5:	05ee82b8f9188a8228c2384f4b9f2eac
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 Patch2:		%{name}-link.patch
@@ -147,6 +149,8 @@ Biblioteka statyczna gdbm.
 	--disable-silent-rules
 
 %{__make}
+
+%{?with_tests:%{__make} check}
 
 %install
 rm -rf $RPM_BUILD_ROOT
