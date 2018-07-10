@@ -1,4 +1,6 @@
-%bcond_without	tests
+#
+# Conditional build:
+%bcond_without	tests	# unit tests
 
 Summary:	GNU database library for C
 Summary(de.UTF-8):	GNU-Datenbank-Library für C
