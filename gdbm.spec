@@ -9,19 +9,18 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.16
+Version:	1.17
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	05ee82b8f9188a8228c2384f4b9f2eac
+# Source0-md5:	f20ce117abc6f302ecf62c34d41c1ecf
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 Patch2:		%{name}-link.patch
 URL:		http://www.gnu.org/software/gdbm/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
-%{?with_gdbmexport:BuildRequires:	gdbm18-devel >= 1.8.3}
 BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	libtool
 BuildRequires:	readline-devel
