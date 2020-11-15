@@ -18,6 +18,7 @@ Source0:	http://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 Patch2:		%{name}-link.patch
+Patch3:		%{name}-gcc10.patch
 URL:		http://www.gnu.org/software/gdbm/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
@@ -138,6 +139,7 @@ Biblioteka statyczna gdbm.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
