@@ -1,8 +1,8 @@
---- gdbm-1.13/configure.ac.orig	2017-03-11 17:12:35.000000000 +0100
-+++ gdbm-1.13/configure.ac	2017-04-10 21:43:11.431408546 +0200
-@@ -105,8 +105,6 @@
+--- gdbm-1.20/configure.ac.orig	2021-06-18 22:05:49.156072616 +0200
++++ gdbm-1.20/configure.ac	2021-06-18 22:08:26.484227191 +0200
+@@ -96,8 +96,6 @@
  
- AC_CHECK_HEADERS([sys/file.h sys/termios.h string.h locale.h getopt.h])
+ AC_CHECK_HEADERS([sys/file.h string.h locale.h getopt.h])
  
 -AC_CHECK_LIB(dbm, main)
 -AC_CHECK_LIB(ndbm, main)
