@@ -9,23 +9,22 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.20
+Version:	1.22
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	006c19b8b60828fd6916a16f3496bd3c
+# Source0-md5:	0bbd38f12656e4728e2f7c4708aec014
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
-Patch2:		%{name}-link.patch
 URL:		http://www.gnu.org/software/gdbm/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	gettext-tools >= 0.18
+BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	texinfo
-Obsoletes:	libgdbm2
+Obsoletes:	libgdbm2 < 1.8.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -79,7 +78,7 @@ Summary(tr.UTF-8):	gdbm için başlık dosyaları ve geliştirme kitaplıkları
 Summary(uk.UTF-8):	Бібліотека та хедери gdbm для програмістів
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	libgdbm2-devel
+Obsoletes:	libgdbm2-devel < 1.8.1
 
 %description devel
 These are the development libraries and header files for gdbm, the GNU
@@ -137,7 +136,6 @@ Biblioteka statyczna gdbm.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
