@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Biblioteka GNU bazy danych dla języka C
 Summary(ru.UTF-8):	Библиотека базы данных GNU для C
 Summary(uk.UTF-8):	Бібліотека бази даних GNU для C
 Name:		gdbm
-Version:	1.24
+Version:	1.25
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	https://ftp.gnu.org/gnu/gdbm/%{name}-%{version}.tar.gz
-# Source0-md5:	c780815649e52317be48331c1773e987
+# Source0-md5:	46266720c7980b75f29e3554aeaeb7a8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link-compat.patch
 URL:		http://www.gnu.org/software/gdbm/
